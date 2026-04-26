@@ -11,7 +11,6 @@ namespace BlockChainP34.Service
     {
         public List<Block> Chain { get; set; }
 
-<<<<<<< HEAD
         private readonly HashingService _hashingService;
         private readonly MiningService _miningService;
 
@@ -32,28 +31,6 @@ namespace BlockChainP34.Service
         {
             var block = new Block(0, DateTime.Parse("2024-06-01T00:00:00Z"), "Genesis Block", "0", "Name");
             block.Hash = _hashingService.ComputeHash(block);
-=======
-        private HashingService _hashingService;
-        private MiningService _miningService;
-
-        private int Difficulty = 1;
-
-        public BlockChainService(int difficulty)
-        {
-            Chain = new List<Block>();
-            _hashingService = new HashingService();
-            _miningService = new MiningService(_hashingService);
-            this.Difficulty = difficulty;
-            AddGenesisBlock();
-        }
-
-        private void AddGenesisBlock()
-        {
-            var block = new Block(0, DateTime.Parse("2024-06-01T00:00:00Z"), "Genesis Block", "0", "Name");
-
-            block.Hash = _hashingService.ComputeHash(block);
-
->>>>>>> b2733c7cb0878b8fc714b92b27017633a0cb7691
             Chain.Add(block);
         }
 
@@ -61,7 +38,6 @@ namespace BlockChainP34.Service
         {
             var lastBlock = Chain.Last();
             var newBlock = new Block(lastBlock.Index + 1, DateTime.UtcNow, data, lastBlock.Hash, author);
-<<<<<<< HEAD
 
             newBlock.Hash = _hashingService.ComputeHash(newBlock);
             _miningService.MineBlock(newBlock, Difficulty);
@@ -163,29 +139,10 @@ namespace BlockChainP34.Service
                 if (currentBlock.PrevHash != previousBlock.Hash)
                     return false;
                 if (!currentBlock.Hash.StartsWith(new string('0', currentBlock.DifficultyAtMining)))
-=======
-            newBlock.Hash = _hashingService.ComputeHash(newBlock);
-            _miningService.MineBlock(newBlock, Difficulty);
-            Chain.Add(newBlock);
-        }
-
-        public bool IsVaild()
-        {
-            for (int i = 1; i < Chain.Count; i++)
-            {
-                var currentBlock = Chain[i];
-                var prevBlock = Chain[i - 1];
-                if (currentBlock.Hash != _hashingService.ComputeHash(currentBlock))
-                    return false;
-                if (currentBlock.PrevHash != prevBlock.Hash)
-                    return false;
-                if (!currentBlock.Hash.StartsWith(new string('0', Difficulty)))
->>>>>>> b2733c7cb0878b8fc714b92b27017633a0cb7691
                     return false;
             }
             return true;
         }
-<<<<<<< HEAD
 
         public string AnalyzeChain()
         {
@@ -229,7 +186,3 @@ namespace BlockChainP34.Service
     }
 }
 
-=======
-    }
-}
->>>>>>> b2733c7cb0878b8fc714b92b27017633a0cb7691

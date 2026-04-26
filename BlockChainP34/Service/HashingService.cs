@@ -19,15 +19,9 @@ namespace BlockChainP34.Service
         private string ComputeHash(string rawData)
         {
             byte[] inputBytes = Encoding.UTF8.GetBytes(rawData);
-<<<<<<< HEAD
             byte[] hashBytes = SHA256.HashData(inputBytes);
 
             return Convert.ToHexString(hashBytes).ToLowerInvariant();
-=======
-            byte[] harshBytes = SHA256.HashData(inputBytes);
-
-            return Convert.ToBase64String(harshBytes);
->>>>>>> b2733c7cb0878b8fc714b92b27017633a0cb7691
         }
     }
 }
